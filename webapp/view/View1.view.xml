@@ -1,0 +1,46 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+             controllerName="ey.ap.acc.controller.View1">
+
+    <Page title="Page 1">
+        <headerContent>
+            <Button text="Go to Next" icon="sap-icon://arrow-right" press="onNext"></Button>
+        </headerContent>
+
+        <SearchField id="idSearch" search="onSearch"></SearchField>
+        <!-- absolute path - parent -->
+        <List id="myList" items="{
+            path: '/fruits',
+            sorter: {
+                path: 'taste',
+                group: true
+            }
+        }" mode="SingleSelectMaster" selectionChange="onSelectItem">  
+            <headerToolbar>
+                <Toolbar >
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <Button icon="sap-icon://delete" tooltip="Aree Kardo na!" press="onDelete"></Button>
+                </Toolbar>
+            </headerToolbar>
+            <items>
+                <!-- To show a business object which comes with name, title, description, icon -->
+                <!-- relative path - @ child level -->
+                <ObjectListItem title="{name}" intro="{healthBenefit}"
+                                icon="{image}"
+                                number="{price}" numberUnit="{curr}"
+                >
+                    <firstStatus>
+                        <ObjectStatus text="{path : 'availability', formatter: '.formatter.getStatus'}"
+                                      state="{path : 'availability', formatter: '.formatter.getStatusColor'}" ></ObjectStatus>
+                    </firstStatus>
+                    <attributes>
+                        <ObjectAttribute title="Season" text="{season}" ></ObjectAttribute>
+                        <ObjectAttribute title="Type" text="{taste}" ></ObjectAttribute>
+                    </attributes>
+                </ObjectListItem>
+            </items>
+
+        </List>
+        
+    </Page>
+
+</mvc:View>
